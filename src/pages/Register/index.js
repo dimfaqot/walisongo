@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { colors } from '../../utils';
 import { BtnBackSvg } from '../../assets';
 import { Buttons, Inputs } from '../../components';
+import {useSelector} from 'react-redux';
 
 const Register = ({navigation}) => {
+
+  const RegisterReducer=useSelector(state=>state.RegisterReducer);
 
   const [form, setForm]= useState({
     username:'',
@@ -12,6 +15,10 @@ const Register = ({navigation}) => {
     name:'',
     sub:'',
     password:''
+  })
+
+  useEffect(()=>{
+    console.log(RegisterReducer);
   })
 
   const sendData=()=>{
