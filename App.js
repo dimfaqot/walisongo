@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type {Node} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   SafeAreaView,
   ScrollView,
@@ -60,6 +61,7 @@ const App: () => Node = () => {
   };
 
   return (
+    <NavigationContainer>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
@@ -87,6 +89,8 @@ const App: () => Node = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
+
+    </NavigationContainer>
   );
 };
 
