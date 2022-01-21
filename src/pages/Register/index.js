@@ -1,10 +1,30 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { colors } from '../../utils';
 import { BtnBackSvg } from '../../assets';
 import { Buttons, Inputs } from '../../components';
 
 const Register = ({navigation}) => {
+
+  const [form, setForm]= useState({
+    username:'',
+    email:'',
+    name:'',
+    sub:'',
+    password:''
+  })
+
+  const sendData=()=>{
+    console.log(form);
+  }
+
+  const onInputChange=(value, input)=>{
+    setForm({
+      ...form,
+     [input]:value
+    })
+  }
+
   return (
     <View style={styles.body}>
         <TouchableOpacity style={styles.conBtnBack} onPress={()=>navigation.navigate("WelcomeAuth")}>
@@ -13,23 +33,23 @@ const Register = ({navigation}) => {
       <View style={styles.container}>
             <Text style={styles.text}>Semua Data Wajib Diisi Ya!</Text>
             <View style={styles.conInput}>
-              <Inputs placeholder="Username..." />
+              <Inputs placeholder="Username..." value={form.username} onChangeText={(value)=>onInputChange(value, 'username')} />
             </View>
             <View style={styles.conInput}>
-              <Inputs placeholder="Email..." />
+              <Inputs placeholder="Email..." value={form.email} onChangeText={(value)=>onInputChange(value, 'email')} />
           </View>
             <View style={styles.conInput}>
-              <Inputs placeholder="Nama..." />
+              <Inputs placeholder="Nama Lengkap..." value={form.name} onChangeText={(value)=>onInputChange(value, 'name')} />
           </View>
             <View style={styles.conInput}>
-              <Inputs placeholder="Sub..." />
+              <Inputs placeholder="Sub..." value={form.sub} onChangeText={(value)=>onInputChange(value, 'sub')} />
           </View>
             <View style={styles.conInput}>
-              <Inputs placeholder="Password..." />
+              <Inputs secureTextEntry={true} placeholder="Password..." value={form.password} onChangeText={(value)=>onInputChange(value, 'password')} />
           </View>
 
           <View style={{ width: '50%', marginTop:30 }}>
-            <Buttons onPress={()=>navigation.navigate("Login")} bgColor={colors.bg.default} textColor={colors.text.light} judul="Daftar" />
+            <Buttons onPress={sendData} bgColor={colors.bg.default} textColor={colors.text.light} judul="Daftar" />
           </View>
       </View>
     </View>

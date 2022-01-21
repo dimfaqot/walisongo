@@ -6,7 +6,7 @@ import {Splash, WelcomeAuth, Register, Login} from '../pages';
 const Stack = createNativeStackNavigator();
 const Router = () => {
   return (
-   <Stack.Navigator>
+   <Stack.Navigator initialRouteName='Register'>
        <Stack.Screen name="Splash" component={Splash} />
        <Stack.Screen name="Login" component={Login} options={{ 
            headerShown:false
