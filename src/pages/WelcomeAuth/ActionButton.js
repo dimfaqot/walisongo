@@ -1,14 +1,14 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { colors } from '../../utils';
 import { Buttons } from '../../components';
 
 
-const ActionButton=({judul, text, bgColor, textColor})=>{
+const ActionButton=({judul, text, bgColor, textColor, onPress})=>{
+
     return(
         <View>
         <Text>{text}</Text>
-            <Buttons judul={judul} bgColor={bgColor} textColor={textColor} />
+            <Buttons onPress={onPress} judul={judul} bgColor={bgColor} textColor={textColor} />
         </View>
     )
 }

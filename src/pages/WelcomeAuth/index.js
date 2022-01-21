@@ -4,13 +4,16 @@ import ActionButton from './ActionButton';
 import { colors } from '../../utils';
 import { logo } from '../../assets';
 
-const WelcomeAuth = () => {
+const WelcomeAuth = ({navigation}) => {
+    const goTo=screen=>{
+        navigation.navigate(screen)
+    }
   return (
     <View style={styles.body}>
       <Image source={logo} />
       <Text style={styles.text}>Selamat Datang di Ponpes Walisongo Sragen </Text>
-      <ActionButton bgColor={colors.bg.light} textColor={colors.text.default} judul="Masuk" text="Masuk jika sudah memiliki akun" />
-      <ActionButton bgColor={colors.bg.default} textColor={colors.text.light} judul="Daftar" text="Daftar jika belum memiliki akun" />
+      <ActionButton onPress={()=>goTo('Login')} bgColor={colors.bg.light} textColor={colors.text.default} judul="Masuk" text="Masuk jika sudah memiliki akun" />
+      <ActionButton onPress={()=>goTo('Register')} bgColor={colors.bg.default} textColor={colors.text.light} judul="Daftar" text="Daftar jika belum memiliki akun" />
     </View>
   );
 };
