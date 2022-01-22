@@ -6,8 +6,7 @@ const initialStateRegister={
         name:'',
         sub:'',
         password:''
-    },
-    title: ''
+    }
 }
 
 const initialStateLogin={
@@ -18,12 +17,7 @@ const initialStateLogin={
 }
 
 const RegisterReducer=(state= initialStateRegister, action)=>{
-    if(action.type==='SET_TITLE'){
-        return{
-            ...state,
-            title: 'Title berubah'
-        }
-    }
+
     if(action.type==='SET_FORM'){
         return{
             ...state,
@@ -37,6 +31,15 @@ const RegisterReducer=(state= initialStateRegister, action)=>{
 }
 
 const LoginReducer=(state= initialStateLogin, action)=>{
+    if(action.type==='SET_FORM'){
+        return{
+            ...state,
+            form: {
+                ...state.form,
+                [action.inputType]:action.inputValue,
+            },
+        }
+    }
     return state
 }
 

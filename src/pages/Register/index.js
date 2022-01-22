@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+// import {axios} from "axios";
 import React from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { colors } from '../../utils';
 import { BtnBackSvg } from '../../assets';
 import { Buttons, Inputs } from '../../components';
@@ -11,32 +12,33 @@ const Register = ({navigation}) => {
   const {form}=useSelector(state=>state.RegisterReducer);
   const dispatch= useDispatch();
 
+    const sendData=()=>{
+      fetch('http://192.168.1.4:8000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      })
+      .then(res=>res.json())
+      .then(res=>{
+        console.log(res);
+        navigation.navigate("Login")
+      })
 
-//   const fetchLogin = async () => {
-//     try {
-//         const res = await axios.post('http://localhost:8000/api/auth/register', form)
-//         return res.data;
-//         // console.log(res.data);
-//     } catch (error) {
-//         return error.response.data;
-//     }
-// }
+    }
 
-  const sendData= ()=>{
-    // axios.post('http://localhost:8000/api/auth/register', form)
-    // .then(res=>console.log(res.data))
-   
-  }
-
+ 
   const onInputChange=(value, inputType)=>{
     dispatch(setForm(inputType, value));
   }
 
   return (
     <View style={styles.body}>
-        <TouchableOpacity style={styles.conBtnBack} onPress={()=>navigation.navigate("WelcomeAuth")}>
-              <BtnBackSvg width={30} height={30} fill={colors.bg.default} />
-        </TouchableOpacity>
+        <View style={styles.conBtnBack}>
+            <Buttons type='icon' name='back' onPress={()=>navigation.goBack()} />
+        </View>
       <View style={styles.container}>
             <Text style={styles.text}>Semua Data Wajib Diisi Ya!</Text>
             <View style={styles.conInput}>
