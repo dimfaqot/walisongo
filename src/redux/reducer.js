@@ -1,20 +1,38 @@
 import {combineReducers} from 'redux';
 const initialStateRegister={
-    username:'',
-    email:'',
-    name:'',
-    sub:'',
-    password:''
+    form: {
+        username:'',
+        email:'',
+        name:'',
+        sub:'',
+        password:''
+    },
+    title: ''
 }
 
 const initialStateLogin={
-    // username:'',
-    // password:''
-    info: "Masukkan password",
-    isLogin:true
+    form:{
+        username:'',
+        password:''
+    }
 }
 
 const RegisterReducer=(state= initialStateRegister, action)=>{
+    if(action.type==='SET_TITLE'){
+        return{
+            ...state,
+            title: 'Title berubah'
+        }
+    }
+    if(action.type==='SET_FORM'){
+        return{
+            ...state,
+            form: {
+                ...state.form,
+                [action.inputType]:action.inputValue,
+            },
+        }
+    }
     return state
 }
 

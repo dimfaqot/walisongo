@@ -1,35 +1,35 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { colors } from '../../utils';
 import { BtnBackSvg } from '../../assets';
 import { Buttons, Inputs } from '../../components';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { setForm } from '../../redux';
 
 const Register = ({navigation}) => {
 
-  const RegisterReducer=useSelector(state=>state.RegisterReducer);
+  const {form}=useSelector(state=>state.RegisterReducer);
+  const dispatch= useDispatch();
 
-  const [form, setForm]= useState({
-    username:'',
-    email:'',
-    name:'',
-    sub:'',
-    password:''
-  })
 
-  useEffect(()=>{
-    console.log(RegisterReducer);
-  })
+//   const fetchLogin = async () => {
+//     try {
+//         const res = await axios.post('http://localhost:8000/api/auth/register', form)
+//         return res.data;
+//         // console.log(res.data);
+//     } catch (error) {
+//         return error.response.data;
+//     }
+// }
 
-  const sendData=()=>{
-    console.log(form);
+  const sendData= ()=>{
+    // axios.post('http://localhost:8000/api/auth/register', form)
+    // .then(res=>console.log(res.data))
+   
   }
 
-  const onInputChange=(value, input)=>{
-    setForm({
-      ...form,
-     [input]:value
-    })
+  const onInputChange=(value, inputType)=>{
+    dispatch(setForm(inputType, value));
   }
 
   return (
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
       flex:1,
       alignItems:'center',
       backgroundColor:'white',
-      marginTop:60
+      marginTop:30
   },
   text:{
       fontWeight:'bold',
