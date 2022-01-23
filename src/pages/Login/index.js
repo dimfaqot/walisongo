@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Buttons, Inputs } from '../../components';
@@ -12,18 +12,12 @@ const Login = ({navigation}) => {
   const {form}=useSelector(state=>state.LoginReducer);
   const dispatch= useDispatch();
 
+  const [msg, setMsg]=useState(null);
+
 
 
   const onInputChange=(value, inputType)=>{
     dispatch(setForm(inputType, value));
-  }
-
-  const Alert=()=>{
-    return(
-      <View style={{marginBottom:5 }}>
-          <Msg type='dangerSmall' text='Password Salah' />
-      </View>
-    )
   }
 
   const sendData = async () => {
@@ -40,23 +34,28 @@ const Login = ({navigation}) => {
         }
       );
       const json = await response.json();
-      Verify(json);
+      if(json.msg){
+        setMsg(data.msg)
+      }
+      if(json.accessToken){
+        verify(json);
+      }
     } catch (error) {
-     Verify(error.response.data);
+    //  Verify(error.response.data);
     }
   };
 
-const Verify=(data)=>{
-      return(
-
-            <View style={{marginBottom:5 }}>
-              {data.msg && <Msg type='dangerSmall' text={data.msg} />}
-            </View>
+    const verify=()=>{
+      
+    }
 
 
-    )
-
-}
+    const Alert =()=>{
+      if(msg !== null){
+        return <Msg type='dangerSmall' mb={5} text={msg} />
+      }
+      return null
+    }
   
   return (
     <View style={styles.body}>
@@ -66,7 +65,7 @@ const Verify=(data)=>{
       <View style={styles.container}>
             <Text style={styles.text}>Semua Data Wajib Diisi Ya!</Text>
             <View style={styles.conInput}>
-            <Verify />
+            <Alert />
               <Inputs placeholder="Username..." value={form.username} onChangeText={(value)=>onInputChange(value, 'username')} />
             </View>
             <View style={styles.conInput}>

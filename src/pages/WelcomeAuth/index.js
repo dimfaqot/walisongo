@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
-import ActionButton from './ActionButton';
-import { colors } from '../../utils';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { logo } from '../../assets';
+import { colors } from '../../utils';
+import ActionButton from './ActionButton';
 
 const WelcomeAuth = ({navigation}) => {
     const goTo=screen=>{

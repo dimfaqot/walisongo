@@ -3,7 +3,10 @@ export const colors={
         default:'#00b894',
         disable:'#b2bec3',
         dark:'#2d3436',
-        light:'white'
+        light:'white',
+        danger:'#d63031',
+        warning:'#fdcb6e',
+        primary:'#0984e3'
     },
     text:{
      default:"white",

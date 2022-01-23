@@ -1,22 +1,7 @@
 import {combineReducers} from 'redux';
-const initialStateRegister={
-    form: {
-        username:'',
-        email:'',
-        name:'',
-        sub:'',
-        password:''
-    }
-}
+import * as get from './initialState';
 
-const initialStateLogin={
-    form:{
-        username:'',
-        password:''
-    }
-}
-
-const RegisterReducer=(state= initialStateRegister, action)=>{
+const RegisterReducer=(state= get.initialStateRegister, action)=>{
 
     if(action.type==='SET_FORM'){
         return{
@@ -30,7 +15,7 @@ const RegisterReducer=(state= initialStateRegister, action)=>{
     return state
 }
 
-const LoginReducer=(state= initialStateLogin, action)=>{
+const LoginReducer=(state= get.initialStateLogin, action)=>{
     if(action.type==='SET_FORM'){
         return{
             ...state,

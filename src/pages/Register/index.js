@@ -1,16 +1,33 @@
 // import {axios} from "axios";
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { colors } from '../../utils';
-import { BtnBackSvg } from '../../assets';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import { Buttons, Inputs } from '../../components';
-import {useSelector, useDispatch} from 'react-redux';
 import { setForm } from '../../redux';
+import { colors } from '../../utils';
+import PopUpRegister from './popUpRegister';
 
 const Register = ({navigation}) => {
 
   const {form}=useSelector(state=>state.RegisterReducer);
   const dispatch= useDispatch();
+  
+  const [popUp, setPopUp]= useState(false);
+
+
+    const onCheck=()=>{
+        setPopUp(true);
+    }
+
+    const onConfirm=(data)=>{
+      if(data==='yes'){
+          setPopUp(false)
+          sendData();
+        }
+      if(data==='no'){
+        setPopUp(false);
+      }
+    }
 
     const sendData=()=>{
       fetch('http://192.168.1.4:8000/api/auth/register', {
@@ -24,12 +41,12 @@ const Register = ({navigation}) => {
       .then(res=>res.json())
       .then(res=>{
         console.log(res);
-        navigation.navigate("Login")
+        // navigation.navigate("Login")
       })
-
     }
 
- 
+
+
   const onInputChange=(value, inputType)=>{
     dispatch(setForm(inputType, value));
   }
@@ -39,6 +56,7 @@ const Register = ({navigation}) => {
         <View style={styles.conBtnBack}>
             <Buttons type='icon' name='back' onPress={()=>navigation.goBack()} />
         </View>
+          <PopUpRegister setModal={popUp} onPressYes={()=>onConfirm('yes')} onPressNo={()=>onConfirm('no')} pesan='Yakin dengan data Anda gak nih?' />
       <View style={styles.container}>
             <Text style={styles.text}>Semua Data Wajib Diisi Ya!</Text>
             <View style={styles.conInput}>
@@ -58,7 +76,7 @@ const Register = ({navigation}) => {
           </View>
 
           <View style={{ width: '50%', marginTop:30 }}>
-            <Buttons onPress={sendData} bgColor={colors.bg.default} textColor={colors.text.light} judul="Daftar" />
+            <Buttons onPress={onCheck} bgColor={colors.bg.default} textColor={colors.text.light} judul="Daftar" />
           </View>
       </View>
     </View>
