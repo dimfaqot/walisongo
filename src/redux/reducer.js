@@ -28,9 +28,21 @@ const LoginReducer=(state= get.initialStateLogin, action)=>{
     return state
 }
 
+const UserReducer=(state= get.initialStateUser, action)=>{
+    if(action.type==='SET_USER'){
+        return{
+            ...state,
+            user:action.user
+        }
+    }
+    return state
+}
+
 const reducer= combineReducers({
     RegisterReducer,
-    LoginReducer
+    LoginReducer,
+    UserReducer
+
 });
 
 export default reducer;

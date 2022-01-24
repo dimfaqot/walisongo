@@ -1,19 +1,23 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Buttons, Inputs } from '../../components';
 import Msg from '../../components/atoms/msg';
-import { setForm } from '../../redux';
+import { setForm, setUser } from '../../redux';
 import { colors } from '../../utils';
+import jwtDecode from "jwt-decode";
+import { isLogin } from '../../methods/functions';
 
 const Login = ({navigation}) => {
 
   const {form}=useSelector(state=>state.LoginReducer);
+
   const dispatch= useDispatch();
 
   const [msg, setMsg]=useState(null);
 
+  // console.log(user);
 
 
   const onInputChange=(value, inputType)=>{
@@ -35,32 +39,44 @@ const Login = ({navigation}) => {
       );
       const json = await response.json();
       if(json.msg){
-        setMsg(data.msg)
+        setMsg(json.msg)
+        setTimeout(()=>{
+          setMsg(null)
+        },2000)
       }
-      if(json.accessToken){
-        verify(json);
-      }
+      // console.log(json); 
+      verify(json);     
+      // if(json.accessToken){
+      //   verify(json);
+      // }
     } catch (error) {
     //  Verify(error.response.data);
     }
   };
 
-    const verify=()=>{
-      
+    const verify=(data)=>{
+      const token=jwtDecode(data.accessToken);
+       if(isLogin(token.exp)){
+         navigation.replace("Splash");
+       }
+
+       dispatch(setUser(data))
+       navigation.replace("Home")
+    
     }
-
-
+    
+    
     const Alert =()=>{
       if(msg !== null){
-        return <Msg type='dangerSmall' mb={5} text={msg} />
+        return <Msg type='dangerMedium' mb={5} text={msg} />
       }
       return null
     }
-  
+
   return (
     <View style={styles.body}>
         <View style={styles.conBtnBack}>
-            <Buttons type='icon' name='back' onPress={()=>navigation.goBack()} />
+            <Buttons type='icon' stroke='' fill={colors.text.default} name='back' onPress={()=>navigation.goBack()} />
         </View>
       <View style={styles.container}>
             <Text style={styles.text}>Semua Data Wajib Diisi Ya!</Text>

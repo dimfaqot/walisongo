@@ -7,13 +7,13 @@ import { setForm } from '../../redux';
 import { colors } from '../../utils';
 import PopUpRegister from './popUpRegister';
 
+
 const Register = ({navigation}) => {
 
   const {form}=useSelector(state=>state.RegisterReducer);
   const dispatch= useDispatch();
   
   const [popUp, setPopUp]= useState(false);
-
 
     const onCheck=()=>{
         setPopUp(true);
@@ -54,7 +54,7 @@ const Register = ({navigation}) => {
   return (
     <View style={styles.body}>
         <View style={styles.conBtnBack}>
-            <Buttons type='icon' name='back' onPress={()=>navigation.goBack()} />
+            <Buttons type='icon' stroke='' stroke='' fill={colors.text.default} name='back' onPress={()=>navigation.goBack()} />
         </View>
           <PopUpRegister setModal={popUp} onPressYes={()=>onConfirm('yes')} onPressNo={()=>onConfirm('no')} pesan='Yakin dengan data Anda gak nih?' />
       <View style={styles.container}>

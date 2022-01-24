@@ -15,5 +15,9 @@ export const initialStateLogin={
     }
 }
 
+export const initialStateUser={
+    user:{}
+}
+
 
 

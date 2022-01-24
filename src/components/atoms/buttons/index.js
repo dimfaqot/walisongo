@@ -3,10 +3,10 @@ import React from 'react';
 import { colors } from '../../../utils';
 import ButtonIcon from './ButtonIcon';
 
-const Buttons = ({judul, bgColor, textColor, onPress, type, name}) => {
+const Buttons = ({judul, bgColor, textColor, onPress, type, name, stroke, fill}) => {
 
     if(type==='icon'){
-       return <ButtonIcon name={name} onPress={onPress} />
+       return <ButtonIcon name={name} stroke={stroke} fill={fill} onPress={onPress} />
     }
   return (
             <TouchableOpacity onPress={onPress} style={{...styles.button, backgroundColor:bgColor}}>
