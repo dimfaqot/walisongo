@@ -4,7 +4,7 @@ import { Buttons } from "../../components";
 import { colors } from "../../utils";
 
 const PopUpRegister = ({setModal, onPressYes, onPressNo, pesan}) => {
-  console.log(setModal);
+//   console.log(setModal);
   return (
     <View style={styles.centeredView}>
       <Modal

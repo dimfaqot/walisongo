@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { Buttons, Inputs } from '../../components';
 import { setForm } from '../../redux';
+import { Buttons, Inputs } from '../../components';
 import { colors } from '../../utils';
 import PopUpRegister from './popUpRegister';
 
@@ -40,7 +40,7 @@ const Register = ({navigation}) => {
       })
       .then(res=>res.json())
       .then(res=>{
-        console.log(res);
+        // console.log(res);
         // navigation.navigate("Login")
       })
     }

@@ -19,5 +19,18 @@ export const initialStateUser={
     user:{}
 }
 
+export const initialStateMenu={
+    menu:[]
+}
+export const initialStateUpdateMenu={
+    name:'',
+    menu:[
+        {
+            mainMenu:'',
+            subMenu:''
+        }
+    ]
+}
+
 
 

@@ -1,13 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { Buttons, Inputs } from '../../components';
 import Msg from '../../components/atoms/msg';
 import { setForm, setUser } from '../../redux';
 import { colors } from '../../utils';
-import jwtDecode from "jwt-decode";
-import { isLogin } from '../../methods/functions';
+
 
 const Login = ({navigation}) => {
 
@@ -16,8 +15,6 @@ const Login = ({navigation}) => {
   const dispatch= useDispatch();
 
   const [msg, setMsg]=useState(null);
-
-  // console.log(user);
 
 
   const onInputChange=(value, inputType)=>{
@@ -38,32 +35,31 @@ const Login = ({navigation}) => {
         }
       );
       const json = await response.json();
+
+      // JIKA ADA MSG ERROR
       if(json.msg){
         setMsg(json.msg)
         setTimeout(()=>{
           setMsg(null)
         },2000)
       }
-      // console.log(json); 
-      verify(json);     
-      // if(json.accessToken){
-      //   verify(json);
-      // }
+     
+      // console.log(json);
+      
+      // JIKA ADA ACCESS TOKEN
+      if(json.accessToken){
+
+        // console.log(json);
+
+        dispatch(setUser(json))
+ 
+        navigation.replace("Home")
+      }
     } catch (error) {
-    //  Verify(error.response.data);
+     console.log(error.response.data);
     }
   };
 
-    const verify=(data)=>{
-      const token=jwtDecode(data.accessToken);
-       if(isLogin(token.exp)){
-         navigation.replace("Splash");
-       }
-
-       dispatch(setUser(data))
-       navigation.replace("Home")
-    
-    }
     
     
     const Alert =()=>{

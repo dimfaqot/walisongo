@@ -6,7 +6,8 @@ export const colors={
         light:'white',
         danger:'#d63031',
         warning:'#fdcb6e',
-        primary:'#0984e3'
+        primary:'#0984e3',
+        msg:"#fafafa"
     },
     text:{
      default:"white",
@@ -16,7 +17,8 @@ export const colors={
     light:'white',
     danger:'#d63031',
     warning:'#fdcb6e',
-    primary:'#0984e3'
+    primary:'#0984e3',
+    msg:"#2d3436"
 
     }
 };

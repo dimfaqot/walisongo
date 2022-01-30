@@ -27,12 +27,41 @@ const LoginReducer=(state= get.initialStateLogin, action)=>{
     }
     return state
 }
+const UpdateMenuReducer=(state= get.initialStateUpdateMenu, action)=>{
+    if(action.type==='SET_FORM_UPDATE_MENU'){
+        return{
+            ...state,
+            // name:action.name,
+            name:action.name,
+            menu: [
+                {
+                    ...state.menu,
+                    mainMenu:action.mainMenu,
+                    subMenu:action.subMenu
+
+
+                }
+
+            ]
+        }
+    }
+    return state
+}
 
 const UserReducer=(state= get.initialStateUser, action)=>{
     if(action.type==='SET_USER'){
         return{
             ...state,
-            user:action.user
+            user: action.user
+        }
+    }
+    return state
+}
+const MenuReducer=(state= get.initialStateMenu, action)=>{
+    if(action.type==='SET_MENU'){
+        return{
+            ...state,
+            menu: action.menu
         }
     }
     return state
@@ -41,7 +70,9 @@ const UserReducer=(state= get.initialStateUser, action)=>{
 const reducer= combineReducers({
     RegisterReducer,
     LoginReducer,
-    UserReducer
+    UserReducer,
+    MenuReducer,
+    UpdateMenuReducer
 
 });
 

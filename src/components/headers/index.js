@@ -99,32 +99,52 @@ const djanaMainHeader=StyleSheet.create({
 
 
 const HomeHeader=({user})=>{
-    console.log(user);
+
     return (
-        <View style={homeHeader.body}>
-            <View style={homeHeader.container}> 
-                <View style={homeHeader.boxProfile}>
-                    <Text style={homeHeader.textLabel}>Username</Text>
-                    <Text style={homeHeader.textProfile}>{user.username}</Text>
+        <View style={styles.body}>
+            <View style={styles.container}> 
+                <View style={styles.boxProfile}>
+                    <Text style={styles.textLabel}>Username</Text>
+                    <Text style={styles.textProfile}>{user.username}</Text>
                 </View>
-                <View style={homeHeader.boxProfile}>
-                    <Text style={homeHeader.textLabel}>Name</Text>
-                    <Text style={homeHeader.textProfile}>{user.name}</Text>
+                <View style={styles.boxProfile}>
+                    <Text style={styles.textLabel}>Name</Text>
+                    <Text style={styles.textProfile}>{user.name}</Text>
                 </View>
-                <View style={homeHeader.boxProfile}>
-                    <Text style={homeHeader.textLabel}>Sub</Text>
-                    <Text style={homeHeader.textProfile}>{user.sub}</Text>
-                </View>
-                <View style={homeHeader.boxProfile}>
-                    <Text style={homeHeader.textLabel}>Role</Text>
-                    <Text style={homeHeader.textProfile}>Super Admin</Text>
+                <View style={styles.boxProfile}>
+                    <Text style={styles.textLabel}>Sub</Text>
+                    <Text style={styles.textProfile}>{user.sub}</Text>
                 </View>
             </View>
         </View>
     )
 }
 
-const homeHeader= StyleSheet.create({
+
+
+const SubMenuHeader=({user})=>{
+
+    return (
+        <View style={styles.body}>
+        <View style={styles.container}> 
+            <View style={styles.boxProfile}>
+                <Text style={styles.textLabel}>Role</Text>
+                <Text style={styles.textProfile}>{user.role}</Text>
+            </View>
+            <View style={styles.boxProfile}>
+                <Text style={styles.textLabel}>Name</Text>
+                <Text style={styles.textProfile}>{user.name}</Text>
+            </View>
+            <View style={styles.boxProfile}>
+                <Text style={styles.textLabel}>Sub</Text>
+                <Text style={styles.textProfile}>{user.sub}</Text>
+            </View>
+        </View>
+    </View>
+    )
+}
+
+const styles= StyleSheet.create({
     body:{
         flex:1,
         backgroundColor: colors.bg.light
@@ -135,7 +155,7 @@ const homeHeader= StyleSheet.create({
         borderRadius:5,
         padding:10,
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'space-around',
         alignItems:'center'
     },
     boxProfile:{
@@ -153,5 +173,5 @@ const homeHeader= StyleSheet.create({
 })
 
 
-export {HomeHeader, DjanaMainHeader}
+export {HomeHeader, DjanaMainHeader, SubMenuHeader}
 

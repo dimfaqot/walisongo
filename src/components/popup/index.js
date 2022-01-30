@@ -4,7 +4,7 @@ import { Buttons } from "..";
 import { colors } from "../../utils";
 
 const PopUp = ({setModal, onPress, pesan}) => {
-  console.log(setModal);
+
   return (
     <View style={styles.centeredView}>
       <Modal

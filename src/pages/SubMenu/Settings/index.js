@@ -1,23 +1,22 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { HomeHeader } from '../../components/headers';
-import { HomeMenu } from '../../components/menus';
-import { colors } from '../../utils';
+import { SubMenuHeader } from '../../../components/headers';
+import { SubMenu } from '../../../components/menus';
+import { colors } from '../../../utils';
 
 
-
-const Home = ({navigation}) => {
+const Home = ({navigation, route}) => {
 
   const {user}=useSelector(state=>state.UserReducer);
-  
+
   return (
     <View style={styles.body}>
       <View>
-        <HomeHeader user={user} />
+        <SubMenuHeader user={user} />
       </View>
       <View style={styles.menu}>
-      <HomeMenu navigation={navigation} token={user.accessToken} />
+        <SubMenu navigation={navigation} token={user.accessToken} mainMenu={route.params.mainMenu} />
       </View>
     </View>
   );
